@@ -1,3 +1,5 @@
+@import './styles/_variables.scss';
+
 #root, html, body {
     height: 100vh;
 }
@@ -5,7 +7,7 @@
 body {
     margin: 0;
     //change this to pull color from VAR's
-    background-color: whitesmoke;
+    background-color: $primary-white;
 }
 
 * {
