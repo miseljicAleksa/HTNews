@@ -1,0 +1,26 @@
+@import '../../../styles/_variables.scss';
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: $htn-blue;
+
+    .navItems {
+        display: flex;
+        // gap: 1.5rem;
+        list-style-type: none;
+        padding: 0;
+
+        * {
+            color: $primary-white;
+            padding: 0 5px;
+        }
+
+        *:nth-child(even){
+            border-left: 1px solid $secondary-white;
+            border-right: 1px solid $secondary-white;
+        }
+    }
+}
