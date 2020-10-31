@@ -1,0 +1,103 @@
+@import '../../../styles/_variables.scss';
+@import '../../../styles/_mixins.scss';
+
+.cardContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #e61c5d;
+    z-index: 1;
+    min-height: 400px;
+    transition: all .2s ease-in-out;
+    border: 2px black solid;
+    
+    &:hover{
+        transform: scale(1.1);
+        z-index: 200;
+        box-shadow:0 0 200px #ffff00;
+    }
+
+    @include md {
+        width: 30%;
+    }
+
+    @include lg{
+        width: 20%;
+    }
+}
+
+.imageWrapper{
+    height: 80%;
+
+    .newsImage {
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    }
+}
+
+.newsInfo {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    
+    .score > h1 {
+        margin: 0;
+    }
+}
+
+.description {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    & > h2 {
+        margin: 0;
+    }
+
+    & > p {
+        margin: 0;
+    }
+}
+
+
+
+.more {
+    --border-width: 3px;
+
+    position: relative;
+    border-radius: var(--border-width);
+
+    &::after {
+        position: absolute;
+        content: "";
+        top: calc(-1 * var(--border-width));
+        left: calc(-1 * var(--border-width));
+        z-index: -1;
+        width: calc(100% + var(--border-width) * 2);
+        height: calc(100% + var(--border-width) * 2);
+        background: linear-gradient(
+        60deg,
+        hsl(224, 85%, 66%),
+        hsl(269, 85%, 66%),
+        hsl(314, 85%, 66%),
+        hsl(359, 85%, 66%),
+        hsl(44, 85%, 66%),
+        hsl(89, 85%, 66%),
+        hsl(134, 85%, 66%),
+        hsl(179, 85%, 66%)
+        );
+        background-size: 300% 300%;
+        background-position: 0 50%;
+        border-radius: calc(2 * var(--border-width));
+        animation: moveGradient 4s alternate infinite;
+    }
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
