@@ -1,33 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import NewsCard from './NewsCard';
 import { getNewsByCountry } from '../../api';
 import PropTypes from 'prop-types';
 import './style.scss';
+import { useAppDispatch } from '../../store';
+import { getNewsByCategory as getNewsSlice } from '../../features/news/newsSlice';
 
-const NewsList = ({ country }) => {
-  const [newsList, setNewsList] = useState([]);
+const NewsList = ({ news, country }) => {
+  const dispatch = useAppDispatch();
 
   useEffect(async () => {
     const articles = await getNewsByCountry(country);
-    setNewsList(articles);
+    dispatch(getNewsSlice(articles));
   }, [country]);
 
   return (
     <div className='newsContainer'>
-      {newsList.map((newsElement, index) => (
-        <NewsCard
-          title={newsElement.title}
-          imageSrc={newsElement.urlToImage}
-          description={newsElement.description}
-          key={index}
-        />
-      ))}
+      {news.length &&
+        news.map((newsElement, index) => (
+          <NewsCard
+            title={newsElement.title}
+            imageSrc={newsElement.urlToImage}
+            description={newsElement.description}
+            key={index}
+          />
+        ))}
     </div>
   );
 };
 
 NewsList.propTypes = {
   country: PropTypes.string,
+  news: PropTypes.array,
 };
 
 export default NewsList;
