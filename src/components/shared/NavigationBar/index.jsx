@@ -1,4 +1,5 @@
 import React from 'react';
+import LanguageButtons from '../../LanguageButtons';
 import './style.scss';
 
 const NavigationBar = () => {
@@ -10,8 +11,7 @@ const NavigationBar = () => {
         <li>Search</li>
       </ul>
       <div className='region'>
-        <button>GB</button>
-        <button>US</button>
+        <LanguageButtons />
       </div>
     </div>
   );
