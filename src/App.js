@@ -10,7 +10,7 @@ const App = () => {
         <NavigationBar />
         <Switch>
           <Route path='/'>
-            <NewsList />
+            <NewsList country='us' />
           </Route>
         </Switch>
       </Router>

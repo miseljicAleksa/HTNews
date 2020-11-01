@@ -1,28 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.scss';
 
-const NewsCard = () => {
+const NewsCard = ({ title, imageSrc, description }) => {
   return (
     <div className='cardContainer'>
-      <h3>Title</h3>
+      <h3>{title}</h3>
       <div className='imageWrapper'>
-        <img
-          className='newsImage'
-          src='https://www.nationalgeographic.rs/files/images/2013/Vincent_van_Gogh___National_Gallery_of_Art_681308748.jpg'
-        />
+        <img className='newsImage' src={imageSrc} />
       </div>
       <div className='newsInfo'>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, omnis
-          saepe. Quia ipsum soluta alias.
-        </p>
+        <p>{description}</p>
         <a className='more' href='www.facebook.com'>
-          {' '}
-          more{' '}
+          More
         </a>
       </div>
     </div>
   );
+};
+
+NewsCard.propTypes = {
+  title: PropTypes.string,
+  imageSrc: PropTypes.string,
+  description: PropTypes.string,
 };
 
 export default NewsCard;
