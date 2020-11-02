@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 const NewsCard = ({ title, imageSrc, description }) => {
+  let titleToUrl = title.split(' ');
+  titleToUrl = titleToUrl.join('_');
+
   return (
     <div className='cardContainer'>
       <h3>{title}</h3>
@@ -11,18 +15,19 @@ const NewsCard = ({ title, imageSrc, description }) => {
       </div>
       <div className='newsInfo'>
         <p>{description}</p>
-        <a className='more' href='www.facebook.com'>
+        <Link className='more' to={`/${titleToUrl}`}>
           More
-        </a>
+        </Link>
       </div>
     </div>
   );
 };
 
+const { string } = PropTypes;
 NewsCard.propTypes = {
-  title: PropTypes.string,
-  imageSrc: PropTypes.string,
-  description: PropTypes.string,
+  title: string,
+  imageSrc: string,
+  description: string,
 };
 
 export default NewsCard;

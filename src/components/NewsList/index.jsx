@@ -22,6 +22,7 @@ const NewsList = ({ news, country }) => {
             title={newsElement.title}
             imageSrc={newsElement.urlToImage}
             description={newsElement.description}
+            content={newsElement.content}
             key={index}
           />
         ))}
