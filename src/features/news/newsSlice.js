@@ -1,20 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  news: [],
+  newsByRegion: [],
+  newsByCategories: {},
 };
 
 const news = createSlice({
   name: 'news',
   initialState,
   reducers: {
-    getNewsByCategory(state, { payload }) {
+    getNewsByRegion(state, { payload }) {
       if (payload) {
-        state.news = payload;
+        state.newsByRegion = payload;
+      }
+    },
+    getNewsByCategories(state, { payload }) {
+      if (payload) {
+        state.newsByCategories = payload;
       }
     },
   },
 });
 
-export const { getNewsByCategory } = news.actions;
+export const { getNewsByRegion, getNewsByCategories } = news.actions;
 export default news.reducer;

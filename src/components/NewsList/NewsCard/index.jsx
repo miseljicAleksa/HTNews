@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.scss';
+import styles from './style.module.scss';
 import { Link } from 'react-router-dom';
 
 const NewsCard = ({ title, imageSrc, description }) => {
@@ -8,14 +8,14 @@ const NewsCard = ({ title, imageSrc, description }) => {
   titleToUrl = titleToUrl.join('_');
 
   return (
-    <div className='cardContainer'>
+    <div className={styles.cardContainer}>
       <h3>{title}</h3>
-      <div className='imageWrapper'>
-        <img className='newsImage' src={imageSrc} />
+      <div className={styles.imageWrapper}>
+        <img className={styles.newsImage} src={imageSrc} />
       </div>
-      <div className='newsInfo'>
+      <div className={styles.newsInfo}>
         <p>{description}</p>
-        <Link className='more' to={`/${titleToUrl}`}>
+        <Link className={styles.more} to={`news/${titleToUrl}`}>
           More
         </Link>
       </div>

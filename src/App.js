@@ -4,10 +4,11 @@ import NewsList from './components/NewsList';
 import SingleArticle from './components/SingleArticle';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import CategoryList from './components/CategoryList';
 
 const App = () => {
   const { language } = useSelector((state) => state.language);
-  const { news } = useSelector((state) => state.news);
+  const { newsByRegion } = useSelector((state) => state.news);
 
   return (
     <Router>
@@ -15,10 +16,13 @@ const App = () => {
       <Switch>
         <Route exact path='/'>
           <Suspense fallback={<p>Loading...</p>}>
-            <NewsList news={news} country={language} />
+            <NewsList news={newsByRegion} country={language} />
           </Suspense>
         </Route>
-        <Route exact path='/:articleTitle' component={SingleArticle} />
+        <Route exact path='news/:articleTitle' component={SingleArticle} />
+        <Suspense fallback={<p>Loading...</p>}>
+          <Route exact path='/categories' component={CategoryList} />
+        </Suspense>
       </Switch>
     </Router>
   );

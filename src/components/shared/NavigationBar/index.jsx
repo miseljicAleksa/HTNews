@@ -2,19 +2,21 @@ import React from 'react';
 import LanguageButtons from '../../LanguageButtons';
 import { Link } from 'react-router-dom';
 
-import './style.scss';
+import styles from './style.module.scss';
 
 const NavigationBar = () => {
   return (
-    <div className='container'>
-      <ul className='navItems'>
+    <div className={styles.container}>
+      <ul className={styles.navItems}>
         <Link to='/'>
           <li>Top News</li>
         </Link>
-        <li>Categories</li>
+        <Link to='/categories'>
+          <li>Categories</li>
+        </Link>
         <li>Search</li>
       </ul>
-      <div className='region'>
+      <div className={styles.region}>
         <LanguageButtons />
       </div>
     </div>

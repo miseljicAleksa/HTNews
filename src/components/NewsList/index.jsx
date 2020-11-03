@@ -2,20 +2,21 @@ import React, { useEffect } from 'react';
 import NewsCard from './NewsCard';
 import { getNewsByCountry } from '../../api';
 import PropTypes from 'prop-types';
-import './style.scss';
+import styles from './style.module.scss';
 import { useAppDispatch } from '../../store';
-import { getNewsByCategory as getNewsSlice } from '../../features/news/newsSlice';
+import { getNewsByRegion } from '../../features/news/newsSlice';
 
 const NewsList = ({ news, country }) => {
   const dispatch = useAppDispatch();
 
   useEffect(async () => {
     const articles = await getNewsByCountry(country);
-    dispatch(getNewsSlice(articles));
+    console.log(articles);
+    dispatch(getNewsByRegion(articles));
   }, [country]);
 
   return (
-    <div className='newsContainer'>
+    <div className={styles.newsContainer}>
       {news.length &&
         news.map((newsElement, index) => (
           <NewsCard

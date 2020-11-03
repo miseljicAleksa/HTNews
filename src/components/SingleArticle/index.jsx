@@ -2,13 +2,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import './style.scss';
+import styles from './style.module.scss';
 
 const SingleArticle = ({ match }) => {
   const { articleTitle } = match.params;
   const articleTitleToCompare = articleTitle.split('_').join(' ');
   const article = useSelector((state) =>
-    state.news.news.find((article) => article.title === articleTitleToCompare),
+    state.newsByRegion.newsByRegion.find(
+      (article) => article.title === articleTitleToCompare,
+    ),
   );
 
   if (!article) {
@@ -23,14 +25,14 @@ const SingleArticle = ({ match }) => {
   const contentOfArticle = content ? content.substring(14, 201) : description;
 
   return (
-    <div className='singleArticleContainer'>
+    <div className={styles.singleArticleContainer}>
       <h3>{title}</h3>
-      <div className='sAimageWrapper'>
-        <img className='newsImage' src={urlToImage} />
+      <div className={styles.sAimageWrapper}>
+        <img className={styles.newsImage} src={urlToImage} />
       </div>
-      <div className='sAnewsInfo'>
-        <p className='content'>{contentOfArticle}</p>
-        <Link to='/' className='back'>
+      <div className={styles.sAnewsInfo}>
+        <p className={styles.content}>{contentOfArticle}</p>
+        <Link to='/' className={styles.back}>
           Back
         </Link>
       </div>
