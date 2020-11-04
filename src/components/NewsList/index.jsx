@@ -15,11 +15,14 @@ const NewsList = ({ news, country }) => {
   }, [country]);
 
   return (
-    <div className={styles.newsContainer}>
-      {news.length &&
-        news.map((newsElement, index) => (
-          <NewsCard article={newsElement} key={index} />
-        ))}
+    <div className={styles.topNewsContainer}>
+      <h1>Top News</h1>
+      <div className={styles.newsContainer}>
+        {news.length &&
+          news.map((newsElement, index) => (
+            <NewsCard article={newsElement} key={index} />
+          ))}
+      </div>
     </div>
   );
 };

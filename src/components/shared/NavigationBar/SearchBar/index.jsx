@@ -19,24 +19,20 @@ const SearchBar = () => {
   };
 
   return (
-    <>
-      <div className={style.style}>
-        <div className={style.searchBox}>
-          <input
-            className={style.searchTxt}
-            type={style.text}
-            placeholder='Search here..'
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button className={style.searchBtn} onClick={handleClick}>
-            <i className=''>
-              {' '}
-              <FontAwesomeIcon icon={faSearch} />
-            </i>
-          </button>
-        </div>
-      </div>
-    </>
+    <div className={style.searchBox}>
+      <input
+        className={style.searchTxt}
+        type={style.text}
+        placeholder='Search here..'
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <button className={style.searchBtn} onClick={handleClick}>
+        <i className=''>
+          {' '}
+          <FontAwesomeIcon icon={faSearch} />
+        </i>
+      </button>
+    </div>
   );
 };
 

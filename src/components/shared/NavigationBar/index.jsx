@@ -2,19 +2,20 @@ import React from 'react';
 import LanguageButtons from '../../LanguageButtons';
 import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
-import SearchBar from './SearchBar';
 
 const NavigationBar = () => {
   return (
     <div className={styles.container}>
       <ul className={styles.navItems}>
-        <Link to='/'>
-          <li>Top News</li>
+        <Link to='/' className={styles.itemLink}>
+          <li className={styles.item}>Top News</li>
         </Link>
-        <Link to='/categories'>
-          <li>Categories</li>
+        <Link to='/categories' className={styles.itemLink}>
+          <li className={styles.item}>Categories</li>
         </Link>
-        <SearchBar />
+        <Link to='/search' className={styles.itemLink}>
+          <li className={styles.item}>Search</li>
+        </Link>
       </ul>
       <div className={styles.region}>
         <LanguageButtons />

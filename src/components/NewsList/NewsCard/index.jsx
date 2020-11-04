@@ -22,10 +22,10 @@ const NewsCard = ({ article }) => {
       </div>
       <div className={styles.newsInfo}>
         <p>{description}</p>
-        <Link className={styles.more} to={`/article/${urlForArticle}`}>
-          More
-        </Link>
       </div>
+      <Link className={styles.more} to={`/article/${urlForArticle}`}>
+        More
+      </Link>
     </div>
   );
 };

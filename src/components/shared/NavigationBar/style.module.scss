@@ -9,17 +9,24 @@
 
     .navItems {
         display: flex;
+        align-items: center;
         list-style-type: none;
         padding: 0;
+
+        .itemLink { 
+            text-decoration: none;
+        }
 
         * {
             color: $primary-white;
             padding: 0 5px;
         }
 
-        *:nth-child(even){
-            border-left: 1px solid $secondary-white;
-            border-right: 1px solid $secondary-white;
+        .item:hover {
+            color: $htn-orange;
+            padding: 0 5px;
         }
+
+        
     }
 }
