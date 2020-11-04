@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 const NewsCard = ({ article }) => {
   const { title, urlToImage, description, url } = article;
-  const toUrl = (url) => url.split('/').slice(3).join('').replace('/', '_');
+  const toUrl = (title) =>
+    title.split('/').slice(3).join('').replace('[^a-zA-Z0-9]', '');
   const urlForArticle = toUrl(url);
-
   return (
     <div className={styles.cardContainer}>
       <h3>{title}</h3>
@@ -16,7 +16,7 @@ const NewsCard = ({ article }) => {
       </div>
       <div className={styles.newsInfo}>
         <p>{description}</p>
-        <Link className={styles.more} to={`news/${url ? urlForArticle : url}`}>
+        <Link className={styles.more} to={`/article/${urlForArticle}`}>
           More
         </Link>
       </div>

@@ -7,8 +7,6 @@ import { useSelector } from 'react-redux';
 
 const SpecificCategory = ({ category }) => {
   const { newsByCategories } = useSelector((state) => state.news);
-  console.log(newsByCategories[category]);
-
   return (
     <>
       <h1 className={style.categoryTitle}>{category}</h1>
