@@ -1,6 +1,7 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import NavigationBar from './components/shared/NavigationBar';
 import NewsList from './components/NewsList';
+import SearchPage from './components/Seach';
 import SingleArticle from './components/SingleArticle';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -15,14 +16,21 @@ const App = () => {
       <NavigationBar />
       <Switch>
         <Route exact path='/'>
-          <Suspense fallback={<p>Loading...</p>}>
+          {newsByRegion ? (
             <NewsList news={newsByRegion} country={language} />
-          </Suspense>
+          ) : (
+            <h1>Loading...</h1>
+          )}
         </Route>
-        <Route exact path='/article/:urlForArticle' component={SingleArticle} />
-        <Suspense fallback={<p>Loading...</p>}>
-          <Route exact path='/categories' component={CategoryList} />
-        </Suspense>
+        <Route exact path='/categories'>
+          <CategoryList />
+        </Route>
+        <Route exact path='/search'>
+          <SearchPage />
+        </Route>
+        <Route exact path='/article/:urlForArticle'>
+          <SingleArticle />
+        </Route>
       </Switch>
     </Router>
   );

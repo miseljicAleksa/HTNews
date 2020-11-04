@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_KEY = '51293605cf124060a96ee7531b430ce3';
+export const API_KEY = 'abe8a7be4ab84a68a4e6a7ad44f10564';
 
 axios.defaults.baseURL = 'http://newsapi.org/v2/';
 
@@ -46,4 +46,18 @@ export const getNewsByCategories = async (country, categories) => {
     formatedNews[category] = allNewsByCategory[index];
   });
   return formatedNews;
+};
+
+export const getNewsBySearchTerm = async (query) => {
+  try {
+    const response = await axios.get('/top-headlines', {
+      params: {
+        q: query,
+        apiKey: API_KEY,
+      },
+    });
+    return response.data.articles;
+  } catch (error) {
+    console.log(error);
+  }
 };

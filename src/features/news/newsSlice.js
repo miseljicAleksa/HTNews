@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   newsByRegion: [],
   newsByCategories: {},
+  newsBySearch: [],
 };
 
 const news = createSlice({
@@ -19,12 +20,17 @@ const news = createSlice({
         state.newsByCategories = payload;
       }
     },
+    getNewsBySearch(state, { payload }) {
+      if (payload) {
+        state.newsBySearch = payload;
+      }
+    },
   },
 });
 
 export const {
   getNewsByRegion,
   getNewsByCategories,
-  getOpenedArticle,
+  getNewsBySearch,
 } = news.actions;
 export default news.reducer;

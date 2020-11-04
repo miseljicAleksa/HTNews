@@ -9,12 +9,10 @@ const SingleArticle = ({ match, history }) => {
 
   const article = useSelector((state) =>
     state.news.newsByRegion.find((article) => {
-      const b = article.url
-        .split('/')
-        .slice(3)
-        .join('')
-        .replace('[^a-zA-Z0-9]', '');
-      return b === urlForArticle;
+      return (
+        article.url.split('/').slice(3).join('').replace('[^a-zA-Z0-9]', '') ===
+        urlForArticle
+      );
     }),
   );
 
@@ -35,7 +33,13 @@ const SingleArticle = ({ match, history }) => {
     <div className={styles.singleArticleContainer}>
       <h3>{title}</h3>
       <div className={styles.sAimageWrapper}>
-        <img className={styles.newsImage} src={urlToImage} />
+        <img
+          className={styles.newsImage}
+          src={
+            urlToImage ||
+            'https://www.industry.gov.au/sites/default/files/August%202018/image/news-placeholder-738.png'
+          }
+        />
       </div>
       <div className={styles.sAnewsInfo}>
         <p className={styles.content}>{contentOfArticle}</p>

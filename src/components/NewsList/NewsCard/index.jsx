@@ -12,7 +12,13 @@ const NewsCard = ({ article }) => {
     <div className={styles.cardContainer}>
       <h3>{title}</h3>
       <div className={styles.imageWrapper}>
-        <img className={styles.newsImage} src={urlToImage} />
+        <img
+          className={styles.newsImage}
+          src={
+            urlToImage ||
+            'https://www.industry.gov.au/sites/default/files/August%202018/image/news-placeholder-738.png'
+          }
+        />
       </div>
       <div className={styles.newsInfo}>
         <p>{description}</p>
