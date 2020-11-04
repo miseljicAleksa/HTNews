@@ -3,19 +3,20 @@ import PropTypes from 'prop-types';
 import styles from './style.module.scss';
 import { Link } from 'react-router-dom';
 
-const NewsCard = ({ title, imageSrc, description }) => {
-  let titleToUrl = title.split(' ');
-  titleToUrl = titleToUrl.join('_');
+const NewsCard = ({ article }) => {
+  const { title, urlToImage, description, url } = article;
+  const toUrl = (url) => url.split('/').slice(3).join('').replace('/', '_');
+  const urlForArticle = toUrl(url);
 
   return (
     <div className={styles.cardContainer}>
       <h3>{title}</h3>
       <div className={styles.imageWrapper}>
-        <img className={styles.newsImage} src={imageSrc} />
+        <img className={styles.newsImage} src={urlToImage} />
       </div>
       <div className={styles.newsInfo}>
         <p>{description}</p>
-        <Link className={styles.more} to={`news/${titleToUrl}`}>
+        <Link className={styles.more} to={`news/${url ? urlForArticle : url}`}>
           More
         </Link>
       </div>
@@ -23,11 +24,8 @@ const NewsCard = ({ title, imageSrc, description }) => {
   );
 };
 
-const { string } = PropTypes;
 NewsCard.propTypes = {
-  title: string,
-  imageSrc: string,
-  description: string,
+  article: PropTypes.object,
 };
 
 export default NewsCard;

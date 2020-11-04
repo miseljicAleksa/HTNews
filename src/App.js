@@ -19,7 +19,7 @@ const App = () => {
             <NewsList news={newsByRegion} country={language} />
           </Suspense>
         </Route>
-        <Route exact path='news/:articleTitle' component={SingleArticle} />
+        <Route exact path='/news/:urlForArticle' component={SingleArticle} />
         <Suspense fallback={<p>Loading...</p>}>
           <Route exact path='/categories' component={CategoryList} />
         </Suspense>

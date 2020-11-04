@@ -3,16 +3,26 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './style.module.scss';
+import { usePersistedState } from '../../usePersistedState';
 
 const SingleArticle = ({ match }) => {
-  const { articleTitle } = match.params;
-  const articleTitleToCompare = articleTitle.split('_').join(' ');
-  const article = useSelector((state) =>
-    state.newsByRegion.newsByRegion.find(
-      (article) => article.title === articleTitleToCompare,
-    ),
-  );
+  const { urlForArticle } = match.params;
 
+  const x = useSelector((state) =>
+    state.news.newsByRegion.find((article) => {
+      console.log(article.title, urlForArticle);
+      return (
+        article.url.split('/').slice(3).join('').replace('/', '_') ===
+        urlForArticle
+      );
+    }),
+  );
+  const [article, setArticle] = usePersistedState(x, '');
+  const y = React.useMemo(() => ({ article, setArticle }), [
+    article,
+    setArticle,
+  ]);
+  console.log(y);
   if (!article) {
     return (
       <section>

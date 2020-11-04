@@ -11,7 +11,6 @@ const NewsList = ({ news, country }) => {
 
   useEffect(async () => {
     const articles = await getNewsByCountry(country);
-    console.log(articles);
     dispatch(getNewsByRegion(articles));
   }, [country]);
 
@@ -19,13 +18,7 @@ const NewsList = ({ news, country }) => {
     <div className={styles.newsContainer}>
       {news.length &&
         news.map((newsElement, index) => (
-          <NewsCard
-            title={newsElement.title}
-            imageSrc={newsElement.urlToImage}
-            description={newsElement.description}
-            content={newsElement.content}
-            key={index}
-          />
+          <NewsCard article={newsElement} key={index} />
         ))}
     </div>
   );

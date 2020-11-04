@@ -22,5 +22,9 @@ const news = createSlice({
   },
 });
 
-export const { getNewsByRegion, getNewsByCategories } = news.actions;
+export const {
+  getNewsByRegion,
+  getNewsByCategories,
+  getOpenedArticle,
+} = news.actions;
 export default news.reducer;
