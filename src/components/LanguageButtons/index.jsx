@@ -1,51 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppDispatch } from '../../store';
 import { changeLang } from '../../features/language/languageSlice';
 import style from './style.module.scss';
 import { useSelector } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import cc from 'classcat';
+import PropTypes from 'prop-types';
 
-const LanguageButtons = () => {
+const LanguageButtons = ({ location: { pathname } }) => {
+  const { language } = useSelector((state) => state.language);
+  const [isOnArticlePage, setisOnArticlePage] = useState(false);
+  const [localLanguage, setLocalLanguage] = useState(
+    localStorage.getItem('lang') || language,
+  );
+
   const dispatch = useAppDispatch();
 
   const handleButtonClickGB = () => {
-    localStorage.removeItem('us');
-
     dispatch(changeLang('gb'));
-    setIsActiveGB(true);
-    setIsActiveUS(false);
-    localStorage.removeItem('us');
-    localStorage.setItem('gb', 'gb');
+    setLocalLanguage('gb');
+    localStorage.setItem('lang', 'gb');
   };
 
   const handleButtonClickUS = () => {
     dispatch(changeLang('us'));
-    setIsActiveGB(false);
-    setIsActiveUS(true);
-    localStorage.removeItem('gb');
-    localStorage.setItem('us', 'us');
+    setLocalLanguage('us');
+    localStorage.setItem('lang', 'us');
   };
 
-  const { language } = useSelector((state) => state.language);
+  const isActiveGB = localLanguage === 'gb';
 
-  const [isActiveGB, setIsActiveGB] = useState(
-    language || localStorage.getItem('gb'),
-  );
-  const [isActiveUS, setIsActiveUS] = useState(
-    language || localStorage.getItem('us'),
-  );
+  useEffect(() => {
+    if (localStorage.getItem('lang') === 'us') {
+      dispatch(changeLang('us'));
+    } else {
+      dispatch(changeLang('gb'));
+    }
+  }, [language]);
+
+  useEffect(() => {
+    if (pathname.includes('/article')) {
+      setisOnArticlePage(true);
+    } else {
+      setisOnArticlePage(false);
+    }
+  }, [pathname]);
 
   return (
     <>
       <button
         className={cc({ [style.active]: isActiveGB })}
+        disabled={isOnArticlePage}
         onClick={() => {
           handleButtonClickGB();
         }}>
         GB
       </button>
       <button
-        className={cc({ [style.active]: isActiveUS })}
+        className={cc({ [style.active]: !isActiveGB })}
+        disabled={isOnArticlePage}
         onClick={() => {
           handleButtonClickUS('us');
         }}>
@@ -55,4 +68,8 @@ const LanguageButtons = () => {
   );
 };
 
-export default LanguageButtons;
+LanguageButtons.propTypes = {
+  location: PropTypes.object,
+};
+
+export default withRouter(LanguageButtons);

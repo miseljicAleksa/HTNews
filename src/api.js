@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_KEY = '17f9e71189114dfa9df6b9ab66043b60';
+// if news wont load, first thing,
+// try different key cause of limitation
+const API_KEY = '1157d4716e7648f5a1722564b6b74f86';
 const TOP_HEADLINES_PATH = '/top-headlines';
 
 axios.defaults.baseURL = 'http://newsapi.org/v2';
@@ -21,7 +23,7 @@ export const getNewsByCountry = async (country) => {
   }
 };
 
-const getNewsByCategory = async (country, category) => {
+export const getNewsByCategory = async (country, category) => {
   try {
     const {
       data: { articles },

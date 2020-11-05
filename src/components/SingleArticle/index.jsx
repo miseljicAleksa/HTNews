@@ -17,6 +17,7 @@ const SingleArticle = ({ match, history }) => {
       );
     }),
   );
+
   useEffect(() => {
     if (articleFromRedux) {
       setArticle(articleFromRedux);

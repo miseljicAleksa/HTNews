@@ -26,6 +26,9 @@ const App = () => {
         <Route exact path='/categories'>
           <CategoryList />
         </Route>
+        <Route exact path='/categories/:category'>
+          <NewsList />
+        </Route>
         <Route exact path='/search'>
           <SearchPage />
         </Route>
@@ -33,11 +36,7 @@ const App = () => {
           <SingleArticle />
         </Route>
         <Route exact path='/news'>
-          {newsByRegion ? (
-            <NewsList news={newsByRegion} country={language} />
-          ) : (
-            <h1>Loading...</h1>
-          )}
+          {newsByRegion ? <NewsList country={language} /> : <h1>Loading...</h1>}
         </Route>
       </Switch>
     </Router>

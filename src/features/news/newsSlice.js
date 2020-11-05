@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   newsByRegion: [],
   newsByCategories: {},
+  newsByCategory: [],
   newsBySearch: [],
 };
 
@@ -25,6 +26,11 @@ const news = createSlice({
         return { ...state, newsBySearch: payload };
       }
     },
+    setNewsByCategory(state, { payload }) {
+      if (payload) {
+        return { ...state, newsByCategory: payload };
+      }
+    },
   },
 });
 
@@ -32,5 +38,6 @@ export const {
   setNewsByRegion,
   setNewsByCategories,
   setNewsBySearch,
+  setNewsByCategory,
 } = news.actions;
 export default news.reducer;

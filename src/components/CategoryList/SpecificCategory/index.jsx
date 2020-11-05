@@ -4,6 +4,7 @@ import style from './style.module.scss';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import cc from 'classcat';
+import { Link } from 'react-router-dom';
 
 const SpecificCategory = ({ category }) => {
   const { newsByCategories } = useSelector((state) => state.news);
@@ -15,7 +16,9 @@ const SpecificCategory = ({ category }) => {
   return (
     <div className={style.categoryContainer}>
       <div className={style.categoryExtandColapse}>
-        <h1 className={style.categoryTitle}>{category}</h1>
+        <Link to={`/categories/${category}`}>
+          <h1 className={style.categoryTitle}>{category}</h1>
+        </Link>
         <button className={style.extandColapseButton} onClick={handleClick}>
           V
         </button>
@@ -26,9 +29,9 @@ const SpecificCategory = ({ category }) => {
           [style.categoryArticles]: true,
         })}>
         {newsByCategories[category] ? (
-          newsByCategories[category].map((article, index) => (
-            <NewsCard key={index} article={article} />
-          ))
+          newsByCategories[category]
+            .slice(0, 5)
+            .map((article, index) => <NewsCard key={index} article={article} />)
         ) : (
           <p>loading...</p>
         )}
