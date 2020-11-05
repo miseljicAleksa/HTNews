@@ -10,8 +10,10 @@ import {
 } from '../../features/news/newsSlice';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const NewsList = ({ country, location: { pathname } }) => {
+  const [t] = useTranslation('common');
   const dispatch = useAppDispatch();
   const [error, setError] = useState(null);
 
@@ -47,7 +49,7 @@ const NewsList = ({ country, location: { pathname } }) => {
 
   return (
     <div className={styles.topNewsContainer}>
-      {category ? <h1>{category}</h1> : <h1>Top News</h1>}
+      {category ? <h1>{t(`htn.${category}`)}</h1> : <h1>{t('htn.topNews')}</h1>}
       <div className={styles.newsContainer}>
         {!category &&
           newsByRegion.map((newsElement, index) => (

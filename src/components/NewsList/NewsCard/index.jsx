@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.module.scss';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const NewsCard = ({ article }) => {
+  const [t] = useTranslation('common');
   const { title, urlToImage, description, url } = article;
   const toUrl = (title) =>
     title.split('/').slice(3).join('').replace('[^a-zA-Z0-9]', '');
@@ -29,7 +31,7 @@ const NewsCard = ({ article }) => {
         aria-label='More'
         className={styles.more}
         to={`/article/${urlForArticle}`}>
-        More
+        {t('htn.more')}
       </Link>
     </div>
   );

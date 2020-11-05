@@ -5,8 +5,11 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import cc from 'classcat';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const SpecificCategory = ({ category }) => {
+  const [t] = useTranslation('common');
+
   const { newsByCategories } = useSelector((state) => state.news);
   const [isColapsed, setIsColapsed] = useState(false);
   const handleClick = () => {
@@ -18,7 +21,7 @@ const SpecificCategory = ({ category }) => {
       <div className={style.categoryExtandColapse}>
         <Link to={`/categories/${category}`}>
           <h1 aria-label={category} className={style.categoryTitle}>
-            {category}
+            {t(`htn.${category}`)}
           </h1>
         </Link>
         <button

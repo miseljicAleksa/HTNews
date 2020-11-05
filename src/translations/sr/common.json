@@ -1,0 +1,15 @@
+{
+    "htn": {
+        "topNews": "Najcitanije",
+        "categories": "Kategorije",
+        "search": "Pretraga",
+        "general": "Uopsteno",
+        "science": "Nauka",
+        "health": "Zdravlje",
+        "sports": "Sport",
+        "technology": "Tehnologija",
+        "entertainment": "Zabava",
+        "more": "Vise",
+        "back": "Nazad"
+    }
+}

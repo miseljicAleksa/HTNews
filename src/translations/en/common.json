@@ -1,0 +1,15 @@
+{
+    "htn": {
+        "topNews": "Top News",
+        "categories": "Categories",
+        "search": "Search",
+        "general": "General",
+        "science": "Science",
+        "health": "Health",
+        "sports": "Sports",
+        "technology": "Technology",
+        "entertainment": "Fun",
+        "more": "More",
+        "back": "Back"
+    }
+}

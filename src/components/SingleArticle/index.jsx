@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import styles from './style.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const SingleArticle = ({ match, history }) => {
+  const [t] = useTranslation('common');
   const { urlForArticle } = match.params;
   const articleFromStorage = localStorage.getItem('openedArticle');
   const [article, setArticle] = useState(JSON.parse(articleFromStorage) || {});
@@ -52,7 +54,7 @@ const SingleArticle = ({ match, history }) => {
           {articleContent}
         </p>
         <button aria-label='Back' onClick={handleClick} className={styles.back}>
-          Back
+          {t('htn.back')}
         </button>
       </div>
     </div>
