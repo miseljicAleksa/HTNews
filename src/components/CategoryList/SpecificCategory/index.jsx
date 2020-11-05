@@ -17,9 +17,14 @@ const SpecificCategory = ({ category }) => {
     <div className={style.categoryContainer}>
       <div className={style.categoryExtandColapse}>
         <Link to={`/categories/${category}`}>
-          <h1 className={style.categoryTitle}>{category}</h1>
+          <h1 aria-label={category} className={style.categoryTitle}>
+            {category}
+          </h1>
         </Link>
-        <button className={style.extandColapseButton} onClick={handleClick}>
+        <button
+          aria-label='Expand or colapse'
+          className={style.extandColapseButton}
+          onClick={handleClick}>
           V
         </button>
       </div>

@@ -10,7 +10,7 @@ const NewsCard = ({ article }) => {
   const urlForArticle = toUrl(url);
   return (
     <div className={styles.cardContainer}>
-      <h3>{title}</h3>
+      <h3 aria-label={title}>{title}</h3>
       <div className={styles.imageWrapper}>
         <img
           className={styles.newsImage}
@@ -21,9 +21,14 @@ const NewsCard = ({ article }) => {
         />
       </div>
       <div className={styles.newsInfo}>
-        <p>{description || 'Click More button to see article content...'}</p>
+        <p aria-label={description}>
+          {description || 'Click More button to see article content...'}
+        </p>
       </div>
-      <Link className={styles.more} to={`/article/${urlForArticle}`}>
+      <Link
+        aria-label='More'
+        className={styles.more}
+        to={`/article/${urlForArticle}`}>
         More
       </Link>
     </div>

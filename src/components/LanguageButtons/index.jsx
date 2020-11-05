@@ -50,6 +50,7 @@ const LanguageButtons = ({ location: { pathname } }) => {
     <>
       <button
         className={cc({ [style.active]: isActiveGB })}
+        aria-label='Change language to GB'
         disabled={isOnArticlePage}
         onClick={() => {
           handleButtonClickGB();
@@ -58,6 +59,7 @@ const LanguageButtons = ({ location: { pathname } }) => {
       </button>
       <button
         className={cc({ [style.active]: !isActiveGB })}
+        aria-label='Change language to US'
         disabled={isOnArticlePage}
         onClick={() => {
           handleButtonClickUS('us');

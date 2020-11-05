@@ -17,6 +17,13 @@ const SearchBar = () => {
     history.push('/search');
   };
 
+  const handleKeyPress = async (event) => {
+    if (event.key === 'Enter') {
+      await getNewsBySearchTerm(query).then(setNewsBySearch).then(dispatch);
+      history.push('/search');
+    }
+  };
+
   return (
     <div className={style.searchBox}>
       <input
@@ -24,6 +31,7 @@ const SearchBar = () => {
         type={style.text}
         placeholder='Search here..'
         onChange={(e) => setQuery(e.target.value)}
+        onKeyPress={(event) => handleKeyPress(event)}
       />
       <button className={style.searchBtn} onClick={handleClick}>
         <i className=''>

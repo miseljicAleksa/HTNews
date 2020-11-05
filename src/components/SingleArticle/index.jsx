@@ -33,9 +33,10 @@ const SingleArticle = ({ match, history }) => {
   const handleClick = () => {
     history.goBack();
   };
+
   return (
     <div className={styles.singleArticleContainer}>
-      <h1>{title}</h1>
+      <h1 aria-label={title}>{title}</h1>
       <div className={styles.sAimageWrapper}>
         <img
           className={styles.newsImage}
@@ -47,8 +48,10 @@ const SingleArticle = ({ match, history }) => {
         />
       </div>
       <div className={styles.sAnewsInfo}>
-        <p className={styles.content}>{articleContent}</p>
-        <button onClick={handleClick} className={styles.back}>
+        <p aria-label={articleContent} className={styles.content}>
+          {articleContent}
+        </p>
+        <button aria-label='Back' onClick={handleClick} className={styles.back}>
           Back
         </button>
       </div>
