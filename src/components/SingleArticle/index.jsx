@@ -31,7 +31,7 @@ const SingleArticle = ({ match, history }) => {
   }, [article]);
 
   const { title, content, description, urlToImage } = article;
-  const articleContent = content ? content.substring(14, 201) : description;
+  const articleContent = content ? content.substring(0, 201) : description;
   const handleClick = () => {
     history.goBack();
   };

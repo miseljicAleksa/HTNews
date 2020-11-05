@@ -1,5 +1,7 @@
+@import '../../../../styles/_variables.scss';
+
 .searchBox {
-  background: #e61c5d;
+  background: $primary-pink;
   height: 40px;
   border-radius: 40px;
   padding: 10px;
@@ -11,7 +13,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #e61c5d;
+  background-color: $primary-pink;
   display: flex;
   justify-content: center;
   align-items: center;

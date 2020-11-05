@@ -3,12 +3,11 @@
 
 .singleArticleContainer {
     display: flex;
-    height: calc(100% - 51px);
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    background-color: #e61c5d;
+    padding: 40px;
+    background-color: $primary-pink;
     min-height: 400px;
     transition: all .2s ease-in-out;
     border: 2px black solid;
@@ -45,13 +44,15 @@
 }
 
 .back {
-    width: 50px;
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
     text-decoration: none;
     bottom: 0;
     color: black;
-    background: none!important;
+    background-color: #ffff;
     border: none;
-    padding: 0!important;
+    padding: 0;
     cursor: pointer;
     
     &:hover{
