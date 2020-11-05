@@ -7,7 +7,7 @@ const NavigationBar = () => {
   return (
     <div className={styles.container}>
       <ul className={styles.navItems}>
-        <Link to='/' className={styles.itemLink}>
+        <Link to='/news' className={styles.itemLink}>
           <li className={styles.item}>Top News</li>
         </Link>
         <Link to='/categories' className={styles.itemLink}>

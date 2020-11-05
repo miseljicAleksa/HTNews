@@ -1,11 +1,9 @@
-/* eslint-disable multiline-ternary */
 import React, { useState } from 'react';
 import NewsCard from '../../NewsList/NewsCard';
 import style from './style.module.scss';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import cc from 'classcat';
-import Carousel from 'react-elastic-carousel';
 
 const SpecificCategory = ({ category }) => {
   const { newsByCategories } = useSelector((state) => state.news);
@@ -13,13 +11,6 @@ const SpecificCategory = ({ category }) => {
   const handleClick = () => {
     setIsColapsed(!isColapsed);
   };
-
-  const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 4 },
-  ];
 
   return (
     <div className={style.categoryContainer}>
@@ -34,15 +25,13 @@ const SpecificCategory = ({ category }) => {
           [style.colapsed]: isColapsed,
           [style.categoryArticles]: true,
         })}>
-        <Carousel itemsToShow={breakPoints}>
-          {newsByCategories[category] ? (
-            newsByCategories[category].map((article, index) => (
-              <NewsCard key={index} article={article} />
-            ))
-          ) : (
-            <p>loading...</p>
-          )}
-        </Carousel>
+        {newsByCategories[category] ? (
+          newsByCategories[category].map((article, index) => (
+            <NewsCard key={index} article={article} />
+          ))
+        ) : (
+          <p>loading...</p>
+        )}
       </div>
     </div>
   );

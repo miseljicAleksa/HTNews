@@ -21,7 +21,7 @@ const NewsCard = ({ article }) => {
         />
       </div>
       <div className={styles.newsInfo}>
-        <p>{description}</p>
+        <p>{description || 'Click More button to see article content...'}</p>
       </div>
       <Link className={styles.more} to={`/article/${urlForArticle}`}>
         More

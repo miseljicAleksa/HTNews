@@ -1,6 +1,6 @@
 @import '../../styles/_variables.scss';
 
-.languageButton:focus{
+.active{
     background-color: $htn-orange;
     outline: none ;
     color: $primary-white;

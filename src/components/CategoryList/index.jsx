@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import SpecificCategory from './SpecificCategory';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store';
-import { getNewsByCategories as getNewsByCategoriesApi } from '../../api';
-import { getNewsByCategories as getNewsByCategoriesSlice } from '../../features/news/newsSlice';
+import { getNewsByCategories } from '../../api';
+import { setNewsByCategories as setNewsByCategoriesSlice } from '../../features/news/newsSlice';
 
 const CategoryList = () => {
   const dispatch = useAppDispatch();
@@ -17,9 +17,11 @@ const CategoryList = () => {
     'sports',
     'technology',
   ];
-  useEffect(async () => {
-    const entertainment = await getNewsByCategoriesApi(language, categories);
-    dispatch(getNewsByCategoriesSlice(entertainment));
+  useEffect(() => {
+    getNewsByCategories(language, categories)
+      .then(setNewsByCategoriesSlice)
+      .then(dispatch)
+      .catch(console.error);
   }, [language]);
 
   return (

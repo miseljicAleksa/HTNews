@@ -10,27 +10,27 @@ const news = createSlice({
   name: 'news',
   initialState,
   reducers: {
-    getNewsByRegion(state, { payload }) {
+    setNewsByRegion(state, { payload }) {
       if (payload) {
-        state.newsByRegion = payload;
+        return { ...state, newsByRegion: payload };
       }
     },
-    getNewsByCategories(state, { payload }) {
+    setNewsByCategories(state, { payload }) {
       if (payload) {
-        state.newsByCategories = payload;
+        return { ...state, newsByCategories: payload };
       }
     },
-    getNewsBySearch(state, { payload }) {
+    setNewsBySearch(state, { payload }) {
       if (payload) {
-        state.newsBySearch = payload;
+        return { ...state, newsBySearch: payload };
       }
     },
   },
 });
 
 export const {
-  getNewsByRegion,
-  getNewsByCategories,
-  getNewsBySearch,
+  setNewsByRegion,
+  setNewsByCategories,
+  setNewsBySearch,
 } = news.actions;
 export default news.reducer;

@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import NewsCard from './NewsCard';
 import { getNewsByCountry } from '../../api';
 import PropTypes from 'prop-types';
 import styles from './style.module.scss';
 import { useAppDispatch } from '../../store';
-import { getNewsByRegion } from '../../features/news/newsSlice';
+import { setNewsByRegion } from '../../features/news/newsSlice';
 
 const NewsList = ({ news, country }) => {
   const dispatch = useAppDispatch();
+  const [error, setError] = useState(null);
 
-  useEffect(async () => {
-    const articles = await getNewsByCountry(country);
-    dispatch(getNewsByRegion(articles));
+  useEffect(() => {
+    getNewsByCountry(country)
+      .then(setNewsByRegion)
+      .then(dispatch)
+      .catch((e) => {
+        setError(e);
+        console.log(error);
+        console.error(e);
+      });
   }, [country]);
 
   return (

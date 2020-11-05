@@ -5,7 +5,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { getNewsBySearchTerm } from '../../../../api';
 import { useHistory } from 'react-router-dom';
 import { useAppDispatch } from '../../../../store';
-import { getNewsBySearch } from '../../../../features/news/newsSlice';
+import { setNewsBySearch } from '../../../../features/news/newsSlice';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('troll');
@@ -13,8 +13,7 @@ const SearchBar = () => {
   const dispatch = useAppDispatch();
 
   const handleClick = async () => {
-    const articles = await getNewsBySearchTerm(query);
-    dispatch(getNewsBySearch(articles));
+    await getNewsBySearchTerm(query).then(setNewsBySearch).then(dispatch);
     history.push('/search');
   };
 

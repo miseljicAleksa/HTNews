@@ -1,63 +1,68 @@
 import axios from 'axios';
 
-export const API_KEY = '17f9e71189114dfa9df6b9ab66043b60';
+const API_KEY = '17f9e71189114dfa9df6b9ab66043b60';
+const TOP_HEADLINES_PATH = '/top-headlines';
 
-axios.defaults.baseURL = 'http://newsapi.org/v2/';
+axios.defaults.baseURL = 'http://newsapi.org/v2';
 
 export const getNewsByCountry = async (country) => {
   try {
-    const response = await axios.get('/top-headlines', {
+    const {
+      data: { articles },
+    } = await axios.get(TOP_HEADLINES_PATH, {
       params: {
-        country: country,
+        country,
         apiKey: API_KEY,
       },
     });
-    return response.data.articles;
+    return articles;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
 const getNewsByCategory = async (country, category) => {
   try {
-    const response = await axios.get('/top-headlines', {
+    const {
+      data: { articles },
+    } = await axios.get(TOP_HEADLINES_PATH, {
       params: {
-        country: country,
-        category: category,
+        country,
+        category,
         apiKey: API_KEY,
       },
     });
-    return response.data.articles;
+    return articles;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
 export const getNewsByCategories = async (country, categories) => {
-  const allNewsByCategory = await Promise.all(
-    categories.map(async (category) => {
-      const response = await getNewsByCategory(country, category);
-      return response;
+  const categoryToNews = async (category) =>
+    await getNewsByCategory(country, category);
+  const allNewsByCategory = await Promise.all(categories.map(categoryToNews));
+  return categories.reduce(
+    (acc, category, index) => ({
+      ...acc,
+      [category]: allNewsByCategory[index],
     }),
+    {},
   );
-  const formatedNews = {};
-
-  categories.forEach((category, index) => {
-    formatedNews[category] = allNewsByCategory[index];
-  });
-  return formatedNews;
 };
 
 export const getNewsBySearchTerm = async (query) => {
   try {
-    const response = await axios.get('/top-headlines', {
+    const {
+      data: { articles },
+    } = await axios.get(TOP_HEADLINES_PATH, {
       params: {
         q: query,
         apiKey: API_KEY,
       },
     });
-    return response.data.articles;
+    return articles;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

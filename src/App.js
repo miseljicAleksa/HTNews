@@ -3,7 +3,12 @@ import NavigationBar from './components/shared/NavigationBar';
 import NewsList from './components/NewsList';
 import SearchPage from './components/Seach';
 import SingleArticle from './components/SingleArticle';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CategoryList from './components/CategoryList';
 
@@ -16,11 +21,7 @@ const App = () => {
       <NavigationBar />
       <Switch>
         <Route exact path='/'>
-          {newsByRegion ? (
-            <NewsList news={newsByRegion} country={language} />
-          ) : (
-            <h1>Loading...</h1>
-          )}
+          <Redirect to='/news' />
         </Route>
         <Route exact path='/categories'>
           <CategoryList />
@@ -30,6 +31,13 @@ const App = () => {
         </Route>
         <Route exact path='/article/:urlForArticle'>
           <SingleArticle />
+        </Route>
+        <Route exact path='/news'>
+          {newsByRegion ? (
+            <NewsList news={newsByRegion} country={language} />
+          ) : (
+            <h1>Loading...</h1>
+          )}
         </Route>
       </Switch>
     </Router>
