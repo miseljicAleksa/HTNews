@@ -31,7 +31,7 @@ const SingleArticle = ({ match, history }) => {
   };
   return (
     <div className={styles.singleArticleContainer}>
-      <h3>{title}</h3>
+      <h1>{title}</h1>
       <div className={styles.sAimageWrapper}>
         <img
           className={styles.newsImage}

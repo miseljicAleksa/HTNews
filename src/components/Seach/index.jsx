@@ -7,7 +7,7 @@ import SearchBar from '../shared/NavigationBar/SearchBar';
 const SearchPage = () => {
   const { newsBySearch } = useSelector((state) => state.news);
   return (
-    <div>
+    <div className={styles.container}>
       <SearchBar />
       <div className={styles.newsContainer}>
         {newsBySearch.length &&

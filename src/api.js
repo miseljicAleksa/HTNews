@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_KEY = 'abe8a7be4ab84a68a4e6a7ad44f10564';
+export const API_KEY = '17f9e71189114dfa9df6b9ab66043b60';
 
 axios.defaults.baseURL = 'http://newsapi.org/v2/';
 
