@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // if news wont load, first thing,
 // try different key cause of limitation
-const API_KEY = '6c44276ec4894f298e38bf0038573116';
+const API_KEY = '5ec051a354144d08921b9523b64838da';
 const TOP_HEADLINES_PATH = '/top-headlines';
 
 axios.defaults.baseURL = 'http://newsapi.org/v2';
