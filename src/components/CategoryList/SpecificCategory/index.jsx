@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import NewsCard from '../../NewsList/NewsCard';
+import CarouselCards from './CarouselCards';
 import style from './style.module.scss';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import cc from 'classcat';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Carousel from 'react-elastic-carousel';
 
 const SpecificCategory = ({ category }) => {
+  const breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 550, itemsToShow: 2 },
+    { width: 768, itemsToShow: 3 },
+  ];
   const [t] = useTranslation('common');
 
   const { newsByCategories } = useSelector((state) => state.news);
@@ -36,13 +42,17 @@ const SpecificCategory = ({ category }) => {
           [style.colapsed]: isColapsed,
           [style.categoryArticles]: true,
         })}>
-        {newsByCategories[category] ? (
-          newsByCategories[category]
-            .slice(0, 5)
-            .map((article, index) => <NewsCard key={index} article={article} />)
-        ) : (
-          <p>loading...</p>
-        )}
+        <Carousel breakPoints={breakPoints}>
+          {newsByCategories[category] ? (
+            newsByCategories[category]
+              .slice(0, 5)
+              .map((article, index) => (
+                <CarouselCards key={index} article={article} />
+              ))
+          ) : (
+            <p>loading...</p>
+          )}
+        </Carousel>
       </div>
     </div>
   );

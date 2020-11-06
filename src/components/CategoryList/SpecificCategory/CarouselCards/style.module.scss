@@ -1,0 +1,71 @@
+@import '../../../../styles/_variables.scss';
+@import '../../../../styles/_mixins.scss';
+
+.cardContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: $secondary-white;
+    z-index: 1;
+    min-height: 400px;
+    transition: all .2s ease-in-out;
+    border: 1px grey solid;
+    
+    &:hover{
+        z-index: 200;
+        background-color: grey;
+    }
+}
+
+.imageWrapper{
+    max-height: 300px;
+    .newsImage {
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    }
+}
+
+.newsInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    
+    .score > h1 {
+        margin: 0;
+    }
+}
+
+.description {
+    height: auto;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    & > h2 {
+        margin: 0;
+    }
+
+    & > p {
+        margin: 0;
+    }
+}
+
+
+
+.more {
+    text-decoration: none;
+    bottom: 0;
+    color: black;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
